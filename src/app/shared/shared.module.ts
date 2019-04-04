@@ -35,6 +35,7 @@ import { MatAutocompleteModule,
          MatStepperModule } from '@angular/material';
 import { ContentHeaderComponent } from './content-header/content-header.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
+import { LandenLijstComponent } from './components/landen/landen-lijst.component';
 
 @NgModule({
   imports: [
@@ -107,11 +108,14 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
     MatTooltipModule,
     MatStepperModule,
     ContentHeaderComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+
+    LandenLijstComponent
   ],
   declarations: [
     ContentHeaderComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    LandenLijstComponent
   ]
 })
 export class SharedModule { }

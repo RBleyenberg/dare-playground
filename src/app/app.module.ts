@@ -10,7 +10,7 @@ import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   wheelPropagation: true,
-  suppressScrollX: true               
+  suppressScrollX: true
 };
 import { CalendarModule } from 'angular-calendar';
 import { SharedModule } from './shared/shared.module';
@@ -39,6 +39,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { reducers, metaReducers } from './reducers';
 import { AuthModule } from './authentication/auth.module';
+import { LandenModule } from './modules/crm/algemeen/landen/landen.module';
 
 
 @NgModule({
@@ -49,10 +50,13 @@ import { AuthModule } from './authentication/auth.module';
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBNcjxo_35qnEG17dQvvftWa68eZWepYE0'
-    }), 
-    PerfectScrollbarModule,     
+    }),
+    PerfectScrollbarModule,
     CalendarModule.forRoot(),
     SharedModule,
+
+    LandenModule,
+
     AuthModule,
     PipesModule,
     routing,

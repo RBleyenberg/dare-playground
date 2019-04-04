@@ -1,6 +1,7 @@
 .content-header{
     color: #fff;
     text-align: center;
+    padding-bottom: 15px;
     // img{
     //     width: 130px;
     //     height: 130px;
@@ -41,5 +42,6 @@
         &.has-bg-image{
             background-size: 480px; 
         }
+        padding-bottom: 15px;
     }
 }

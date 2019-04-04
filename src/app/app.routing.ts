@@ -7,18 +7,20 @@ import { RegisterComponent } from './authentication/components/register/register
 import { LoginComponent } from './authentication/components/login/login.component';
 
 export const routes: Routes = [
-    { 
-        path: '', 
+    {
+        path: '',
         component: PagesComponent, children: [
-            { path: 'crm', loadChildren: './modules/crm/crm.module#CrmModule', data: { breadcrumb: 'crm' } },
-            { path: 'blank', component: BlankComponent, data: { breadcrumb: 'Blank page' } }
-        ]},
-    { path: 'register', component: RegisterComponent },
-    { path: 'login', component: LoginComponent },
-    //{ path: 'landing', loadChildren: './pages/landing/landing.module#LandingModule' },
+            // tslint:disable-next-line:max-line-length
+            { path: 'crm/landen', loadChildren: './modules/crm/algemeen/landen/landen.module#LandenModule', data: { breadcrumb: 'landen' } },
+            { path: 'blank', component: BlankComponent, data: { breadcrumb: 'Blank page' } },
+            { path: 'register', component: RegisterComponent },
+            { path: 'login', component: LoginComponent },
+        ]}
+
+    // { path: 'landing', loadChildren: './pages/landing/landing.module#LandingModule' },
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes, {
    preloadingStrategy: PreloadAllModules,  // <- comment this line for activate lazy load
-   // useHash: true
+   // useHash: false
 });

@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { AppState } from '../../../reducers/index';
 import { Store, select } from '@ngrx/store';
 import * as actions from './../../store/auth.actions';
 import { getError } from '../../store/auth.selectors';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Settings } from 'src/app/app.settings.model';
+import { AppSettings } from 'src/app/app.settings';
+import { emailValidator, matchingPasswords } from 'src/app/theme/utils/app-validators';
 
 @Component({
   selector: 'app-register',
@@ -13,18 +16,24 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+
   registerForm: FormGroup;
-
   error$: Observable<string | null>;
+  public settings: Settings;
 
-  constructor(private store: Store<AppState>) { }
+  constructor(public appSettings: AppSettings, private store: Store<AppState>, public fb: FormBuilder) { }
 
   ngOnInit() {
-    this.registerForm = new FormGroup({
-      username: new FormControl(),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.minLength(6)])
-    });
+    this.settings = this.appSettings.settings;
+
+    this.registerForm = this.fb.group({
+      'username': [null, Validators.compose([Validators.required, Validators.minLength(3)])],
+      'email': [null, Validators.compose([Validators.required, emailValidator])],
+      'password': ['', Validators.required],
+      'confirmPassword': ['', Validators.required]
+    }, {validator: matchingPasswords('password', 'confirmPassword')});
+
+
 
     this.error$ = this.store
       .pipe(

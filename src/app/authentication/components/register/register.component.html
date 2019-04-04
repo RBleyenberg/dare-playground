@@ -1,58 +1,41 @@
-<div class="container-fluid full-page-container">
-    <div class="row h-100 justify-content-center align-items-center">
-      <div class="col-lg-4 col-sm-8 animated fadeIn">
-        <!-- Material form login -->
-        <div class="z-depth-2">
-  
-          <div class="text-center py-4">
-            <h5>
-              <strong>Register</strong>
-            </h5>
-          </div>
-  
-  
-          <!--Card content-->
-          <div class="px-lg-5 pt-0">
-            <div *ngIf="error$ | async as error" class="alert alert-danger" role="alert">
-              {{ error }}
-            </div>
-            <!-- Form -->
-            <form [formGroup]="registerForm" class="text-center" style="color: #757575;">
-  
-              <!-- Username -->
-              <div class="md-form">
-                <input type="text" id="username" class="form-control" formControlName="username">
-                <label for="username">Username</label>
+
+    <div fxLayout="row" fxLayoutAlign="center center" class="h-100">
+         <form [formGroup]="registerForm" (ngSubmit)="onRegister(registerForm.value)" fxFlex="90" fxFlex.gt-sm="30" fxFlex.sm="60" class="mat-elevation-z6">
+              <app-content-header 
+                  [title]="'Register'" 
+                  [hideBreadcrumb]="true"
+                  [hasBgImage]="true" 
+                  [class]="'py-4'"></app-content-header>           
+                  <div *ngIf="error$ | async as error" class="alert alert-danger" role="alert">
+                    {{ error }}
+                  </div> 
+              <div class="p-4">
+                  <a mat-button routerLink="/login" color="accent" class="w-100">Already have an account? Sign in!</a>
+                  <mat-form-field class="w-100">
+                      <mat-icon matPrefix class="mat-icon-sm mb-2 mr-2 secondary-text-color">person</mat-icon>
+                      <input matInput placeholder="User name" type="text" id="username" formControlName="username">
+                      <mat-error *ngIf="registerForm.controls.username.errors?.required">Full Name is required</mat-error>
+                      <mat-error *ngIf="registerForm.controls.username.hasError('minlength')">Full Name isn't long enough, minimum of 3 characters</mat-error>
+                  </mat-form-field>
+                  <mat-form-field class="w-100">
+                      <mat-icon matPrefix class="mat-icon-sm mb-2 mr-2 secondary-text-color">mail</mat-icon>
+                      <input matInput placeholder="Email" type="email" id="email" formControlName="email">
+                      <mat-error *ngIf="registerForm.controls.email.errors?.required">Email is required</mat-error>
+                      <mat-error *ngIf="registerForm.controls.email.hasError('invalidEmail')">Invalid email address</mat-error>
+                  </mat-form-field>
+                  <mat-form-field class="w-100">
+                      <mat-icon matPrefix class="mat-icon-sm mb-2 mr-2 secondary-text-color">lock</mat-icon>
+                      <input matInput placeholder="Password" type="password" id="password" formControlName="password" minlength="6">
+                      <mat-error *ngIf="registerForm.controls.password.errors?.required">Password is required</mat-error>
+                      <mat-error *ngIf="registerForm.controls.password.hasError('minlength')">Password isn't long enough, minimum of 6 characters</mat-error>
+                  </mat-form-field> 
+                  <mat-form-field class="w-100">
+                      <mat-icon matPrefix class="mat-icon-sm mb-2 mr-2 secondary-text-color">lock</mat-icon>
+                      <input matInput placeholder="Confirm Password" formControlName="confirmPassword" type="password">
+                      <mat-error *ngIf="registerForm.controls.confirmPassword.errors?.required">Confirm Password is required</mat-error>
+                      <mat-error *ngIf="registerForm.controls.confirmPassword.hasError('mismatchedPasswords')">Passwords do not match</mat-error>
+                  </mat-form-field>
+                  <button mat-raised-button color="primary" class="mat-elevation-z6 w-100 mt-3" type="submit">SIGN UP</button>
               </div>
-  
-              <!-- Email -->
-              <div class="md-form">
-                <input type="email" id="email" class="form-control" formControlName="email">
-                <label for="email">E-mail</label>
-              </div>
-  
-              <!-- Password -->
-              <div class="md-form">
-                <input type="password" id="password" class="form-control" formControlName="password">
-                <label for="password">Password</label>
-              </div>
-  
-              <!-- Sign in button -->
-              <button  color="primary" block="true" class="my-4 waves-effect z-depth-0"
-                 type="submit" (click)="onRegister()">Register</button>
-  
-              <!-- Register -->
-              <p>Already have an account?
-                <a routerLink="/login">Log In</a>
-              </p>
-  
-            </form>
-            <!-- Form -->
-  
-          </div>
-  
-        </div>
-        <!-- Material form login -->
-      </div>
+          </form>
     </div>
-  </div>

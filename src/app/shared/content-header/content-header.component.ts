@@ -6,12 +6,12 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./content-header.component.scss']
 })
 export class ContentHeaderComponent implements OnInit {
-  @Input('icon') icon:any;
-  @Input('title') title:any;
-  @Input('desc') desc:any;
-  @Input('hideBreadcrumb') hideBreadcrumb:boolean = false;
-  @Input('hasBgImage') hasBgImage:boolean = false;
-  @Input('class') class:any;
+  @Input('icon') icon: any;
+  @Input('title') title: any;
+  @Input('desc') desc: any;
+  @Input('hideBreadcrumb') hideBreadcrumb = false;
+  @Input('hasBgImage') hasBgImage = false;
+  @Input('class') class: any;
   constructor() { }
 
   ngOnInit() {

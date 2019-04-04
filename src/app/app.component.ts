@@ -15,14 +15,8 @@ export class AppComponent {
 
 
 
-  constructor(public appSettings:AppSettings){
+  constructor(public appSettings: AppSettings) {
       this.settings = this.appSettings.settings;
-  } 
-
-  ngOnInit() {
-
   }
 
-
-  
 }

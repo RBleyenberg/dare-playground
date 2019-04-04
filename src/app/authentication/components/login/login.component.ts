@@ -6,6 +6,9 @@ import * as actions from './../../store/auth.actions';
 import { Observable } from 'rxjs';
 import { getError } from '../../store/auth.selectors';
 import { map } from 'rxjs/operators';
+import { emailValidator } from '../../../theme/utils/app-validators';
+import { AppSettings } from '../../../app.settings';
+import { Settings } from '../../../app.settings.model';
 
 @Component({
   selector: 'app-login',
@@ -13,16 +16,19 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+
   loginForm: FormGroup;
-
   error$: Observable<string | null>;
+    public settings: Settings;
 
-  constructor(private store: Store<AppState>) { }
+  constructor(public appSettings: AppSettings, private store: Store<AppState>) {
+      this.settings = this.appSettings.settings;
+  }
 
   ngOnInit() {
     this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', Validators.required)
+        'email': new FormControl(null, Validators.compose([Validators.required, emailValidator])),
+        'password': new FormControl(null, Validators.compose([Validators.required, Validators.minLength(6)]))
     });
 
     this.error$ = this.store
@@ -47,16 +53,16 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  onGoogleLogin(authProvider: string) {
-    this.store.dispatch(new actions.SocialLogin({ authProvider }));
-  }
+  // onGoogleLogin(authProvider: string) {
+  //   this.store.dispatch(new actions.SocialLogin({ authProvider }));
+  // }
 
-  onFacebookLogin(authProvider: string) {
-    this.store.dispatch(new actions.SocialLogin({ authProvider }));
-  }
+  // onFacebookLogin(authProvider: string) {
+  //   this.store.dispatch(new actions.SocialLogin({ authProvider }));
+  // }
 
-  onTwitterLogin(authProvider: string) {
-    this.store.dispatch(new actions.SocialLogin({ authProvider }));
-  }
+  // onTwitterLogin(authProvider: string) {
+  //   this.store.dispatch(new actions.SocialLogin({ authProvider }));
+  // }
 
 }

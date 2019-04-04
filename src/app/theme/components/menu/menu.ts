@@ -1,10 +1,10 @@
 import { Menu } from './menu.model';
 
 export const verticalMenuItems = [ 
-    new Menu (1, 'Dashboard', '/', null, 'dashboard', null, false, 0),
+    new Menu (1, 'Dashboard', '/blank', null, 'dashboard', null, false, 0),
     new Menu (2, 'CRM', null, null, 'computer', null, true, 0),   
-    new Menu (3, 'Relaties', '/#', null, 'keyboard', null, false, 2),  
-    new Menu (4, 'Contactpersonen', '/#', null, 'keyboard', null, false, 2), 
+    new Menu (3, 'Relaties', '/', null, 'keyboard', null, false, 2),  
+    new Menu (4, 'Contactpersonen', '/', null, 'keyboard', null, false, 2), 
     new Menu (5, 'Leveradressen', '/#', null, 'keyboard', null, false, 2), 
     new Menu (6, 'Documenten', '/#', null, 'keyboard', null, false, 2), 
     new Menu (10, 'Algemeen', null, null, 'computer', null, true, 2), 

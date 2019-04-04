@@ -167,19 +167,19 @@
 }
 .options-icon{
     position: fixed;
-    top: 120px;
+    bottom: 8px;
     right: 0;
     width: 40px;
     height: 40px;
-    background: rgba(0,0,0,.7);
+  //  background: rgba(0,0,0,.7);
     color: #fff;
     cursor: pointer;
     z-index: 99999;
-    .mat-icon{
-        -webkit-animation: spin 8s linear infinite;
-        -moz-animation: spin 8s linear infinite;
-        animation: spin 8s linear infinite;
-    }
+    // .mat-icon{
+    //     -webkit-animation: spin 8s linear infinite;
+    //     -moz-animation: spin 8s linear infinite;
+    //     animation: spin 8s linear infinite;
+    // }
 }
 
 @-moz-keyframes spin { 

@@ -38,6 +38,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { reducers, metaReducers } from './reducers';
+import { AuthModule } from './authentication/auth.module';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { reducers, metaReducers } from './reducers';
     PerfectScrollbarModule,     
     CalendarModule.forRoot(),
     SharedModule,
+    AuthModule,
     PipesModule,
     routing,
     HttpClientModule,

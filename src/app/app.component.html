@@ -5,12 +5,7 @@
             [class.fixed-footer]="settings.fixedFooter"
             [class.horizontal-menu]="settings.menu == 'horizontal'" 
             [class.compact]="settings.menuType == 'compact'" 
-            [class.mini]="settings.menuType == 'mini'"
-            [user]="user$ | async" 
-            [isLoggedIn]="isLoggedIn$ | async" 
-            [isLoading]="isLoading$ | async" 
-            [isAdmin]="isAdmin$ | async"
-            (logout)="onLogout($event)">  
+            [class.mini]="settings.menuType == 'mini'">  
 
 
             

@@ -5,6 +5,12 @@ import { AppSettings } from '../app.settings';
 import { Settings } from '../app.settings.model';
 import { rotate } from '../theme/utils/app-animation';
 import { MenuService } from '../theme/components/menu/menu.service';
+import { Observable } from 'rxjs';
+import { User } from '../authentication/interface/user.interface';
+import { getUser, getIsLoggedIn, getIsLoading, getIsAdmin } from '../authentication/store/auth.selectors';
+import { Store } from '@ngrx/store';
+import { AppState } from '../reducers';
+import * as fromAuth from '../authentication/store/auth.actions';
 
 @Component({
   selector: 'app-pages',
@@ -14,6 +20,7 @@ import { MenuService } from '../theme/components/menu/menu.service';
   providers: [ MenuService ]
 })
 export class PagesComponent implements OnInit { 
+
   @ViewChild('sidenav') sidenav:any;  
   @ViewChild('backToTop') backToTop:any;  
   @ViewChildren(PerfectScrollbarDirective) pss: QueryList<PerfectScrollbarDirective>;
@@ -28,11 +35,22 @@ export class PagesComponent implements OnInit {
   public menuTypes = ['default', 'compact', 'mini'];
   public menuTypeOption:string;
 
-  constructor(public appSettings:AppSettings, public router:Router, private menuService: MenuService){        
+  user$: Observable<User | null>;
+  isLoggedIn$: Observable<boolean>;
+  isLoading$: Observable<boolean>;
+  isAdmin$: Observable<boolean>;
+
+  constructor(public appSettings:AppSettings, public router:Router, private menuService: MenuService, private store: Store<AppState>){        
     this.settings = this.appSettings.settings;
   }
   
   ngOnInit() {
+
+    this.user$ = this.store.select(getUser);
+    this.isLoggedIn$ = this.store.select(getIsLoggedIn);
+    this.isLoading$ = this.store.select(getIsLoading);
+    this.isAdmin$ = this.store.select(getIsAdmin);
+    
     this.optionsPsConfig.wheelPropagation = false;
     if(window.innerWidth <= 960){
       this.settings.menu = 'vertical';
@@ -115,4 +133,9 @@ export class PagesComponent implements OnInit {
       this.menuService.closeAllSubMenus();
     }      
   }
+
+  onLogout(user: User) {
+    this.store.dispatch(new fromAuth.LogoutRequested( { user }));
+  }
+
 }

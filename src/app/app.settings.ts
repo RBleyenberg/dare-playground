@@ -5,7 +5,7 @@ import { Settings } from './app.settings.model';
 export class AppSettings {
     public settings = new Settings(
         'Dare ERP-software',   //theme name
-        true,       //loadingSpinner
+        false,       //loadingSpinner
         true,      //fixedHeader
         true,      //fixedSidenav
         false,      //fixedSidenavUserContent

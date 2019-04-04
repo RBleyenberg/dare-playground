@@ -7,7 +7,6 @@ import { MenuService } from '../menu.service';
   selector: 'app-vertical-menu',
   templateUrl: './vertical-menu.component.html',
   styleUrls: ['./vertical-menu.component.scss'],
-  encapsulation: ViewEncapsulation.None,
   providers: [ MenuService ]
 })
 export class VerticalMenuComponent implements OnInit {

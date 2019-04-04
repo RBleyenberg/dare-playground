@@ -1,18 +1,18 @@
     
 import { ActionReducerMap, MetaReducer, ActionReducer, Action } from '@ngrx/store';
   import * as fromAuth from '../authentication/store/auth.reducer';
-  import * as fromAdmin from '../admin/store/admin.reducer';
+  //import * as fromAdmin from '../admin/store/admin.reducer';
   import { AuthState } from '../authentication/store/auth.state';
-  import { AdminState } from '../admin/store/admin.state';
+  //import { AdminState } from '../admin/store/admin.state';
   
   export interface AppState {
     auth: AuthState;
-    admin: AdminState;
+   // admin: AdminState;
   }
   
   export const reducers: ActionReducerMap<AppState> = {
-    auth: fromAuth.authReducer,
-    admin: fromAdmin.adminReducer
+    auth: fromAuth.authReducer
+   //admin: fromAdmin.adminReducer
   };
   
   export function clearState(reducer: ActionReducer<AppState>): ActionReducer<AppState> {

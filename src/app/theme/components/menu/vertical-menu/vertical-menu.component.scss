@@ -7,6 +7,7 @@
 }
 
 .menu-item{    
+    margin-left: 20px;
     .mat-button{
         padding: 0;    
         padding-top: 6px;
@@ -29,7 +30,21 @@
     }
     .mat-button-wrapper{
         padding-left: 16px;
+        margin-left: 20px !important;
     }    
+}
+
+.menu-icon{
+    height: 16px;
+    width: 16px;
+}
+
+.material-icons{
+    font-size: 16px;
+}
+
+.menu-title{
+    font-weight: bold;
 }
 
 .sub-menu{

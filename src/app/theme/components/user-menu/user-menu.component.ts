@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input, Output, EventEmitter } from '@angular/core';
+import { User } from 'src/app/authentication/interface/user.interface';
 
 @Component({
   selector: 'app-user-menu',
@@ -7,10 +8,24 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None,
 })
 export class UserMenuComponent implements OnInit {
+
   public userImage = "assets/img/users/user.jpg";
+
+  @Input() user: User;
+  @Input() isLoggedIn: boolean;
+  @Input() isLoading: boolean;
+  @Input() isAdmin: boolean;
+
+  @Output() logout = new EventEmitter<User>();
+
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onLogout() {
+    this.logout.emit(this.user);
   }
 
 }

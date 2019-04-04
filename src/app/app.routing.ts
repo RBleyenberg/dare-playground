@@ -12,8 +12,7 @@ export const routes: Routes = [
         component: PagesComponent, children: [
             { path: 'crm', loadChildren: './modules/crm/crm.module#CrmModule', data: { breadcrumb: 'crm' } },
             { path: 'blank', component: BlankComponent, data: { breadcrumb: 'Blank page' } }
-        ],
-    },
+        ]},
     { path: 'register', component: RegisterComponent },
     { path: 'login', component: LoginComponent },
     //{ path: 'landing', loadChildren: './pages/landing/landing.module#LandingModule' },

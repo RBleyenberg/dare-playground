@@ -10,7 +10,7 @@ export const verticalMenuItems = [
     new Menu (10, 'Algemeen', null, null, 'computer', null, true, 2), 
     new Menu (11, 'Adressen', '/#', null, 'keyboard', null, false, 10), 
     new Menu (12, 'Provincies', '/#', null, 'keyboard', null, false, 10), 
-    new Menu (13, 'Landen', '/#', null, 'keyboard', null, false, 10), 
+    new Menu (13, 'Landen', '/crm/landen', null, 'keyboard', null, false, 10), 
     new Menu (14, 'Talen', '/#', null, 'keyboard', null, false, 10), 
     new Menu (15, 'Relatietypes', '/#', null, 'keyboard', null, false, 10), 
     new Menu (16, 'Relatiegroepen', '/#', null, 'keyboard', null, false, 10), 

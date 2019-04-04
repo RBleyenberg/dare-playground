@@ -7,7 +7,7 @@
                 <div fxLayout="row" fxLayoutAlign="center center">               
                     <a routerLink="/" fxLayout="row" fxLayoutAlign="start center" class="logo" ngClass.xs="mobile" (click)="closeSubMenus()">
                         <img src="assets/img/logo.png" alt="logo" [@rotate]="showSidenav">
-                        <span class="mx-2">ANNULAR</span> 
+                        <span class="mx-2">Dare ERP-Software</span> 
                     </a>
                 </div> 
                 <div fxLayout="row" fxLayoutAlign="start center" class="w-100"> 
@@ -31,7 +31,7 @@
             <mat-toolbar *ngIf="settings.fixedSidenav" class="top-toolbar">
                 <a routerLink="/" fxLayout="row" fxLayoutAlign="start center" class="logo">
                     <img src="assets/img/logo.png" alt="logo" [@rotate]="showSidenav">
-                    <span class="mx-2">ANNULAR</span> 
+                    <span class="mx-2">Dare ERP-Software</span> 
                 </a>
             </mat-toolbar>            
             <app-sidenav></app-sidenav>
@@ -44,7 +44,12 @@
                     <app-horizontal-menu [menuParentId]="0" [class.w-100]="(settings.menuType!='mini')"></app-horizontal-menu>
                 </div>            
             </mat-toolbar>
+
+
+
             <router-outlet></router-outlet> 
+
+            
 
         </mat-drawer-content>    
         

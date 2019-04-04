@@ -28,6 +28,16 @@ import { HorizontalMenuComponent } from './theme/components/menu/horizontal-menu
 import { FlagsMenuComponent } from './theme/components/flags-menu/flags-menu.component';
 import { FullScreenComponent } from './theme/components/fullscreen/fullscreen.component';
 import { UserMenuComponent } from './theme/components/user-menu/user-menu.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { reducers, metaReducers } from './reducers';
 
 
 @NgModule({
@@ -43,7 +53,15 @@ import { UserMenuComponent } from './theme/components/user-menu/user-menu.compon
     CalendarModule.forRoot(),
     SharedModule,
     PipesModule,
-    routing
+    routing,
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    AngularFireDatabaseModule,
+    StoreModule.forRoot(reducers, { metaReducers }),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    EffectsModule.forRoot([])
   ],
   declarations: [
     AppComponent,

@@ -4,9 +4,7 @@ import { of } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Land } from '../interface/interface.land';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({providedIn: 'root'})
 export class LandenService {
 
   constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth) { }

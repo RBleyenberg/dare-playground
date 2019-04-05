@@ -7,9 +7,8 @@ import { take, map } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Land } from '../interface/interface.land';
 import { AppState } from 'src/app/reducers';
-import { MDBModalRef, MDBModalService } from 'angular-bootstrap-md';
 import { LandenModalComponent } from 'src/app/shared/components/landen-modal/landen-modal.component';
-import { ConfirmModalComponent } from 'src/app/shared/components/confirm-modal/confirm-modal.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-landen',
@@ -19,16 +18,12 @@ import { ConfirmModalComponent } from 'src/app/shared/components/confirm-modal/c
 export class LandenComponent implements OnInit, OnDestroy {
   isLoading$: Observable<boolean>;
   landen: Land[] | null;
-  modalRef: MDBModalRef;
   landenSub: Subscription;
 
-  modalConfig = {
-    class: 'modal-dialog-centered'
-  };
 
   lastLandIndex: number;
 
-  constructor(private modalService: MDBModalService, private store: Store<AppState>, private afAuth: AngularFireAuth) { }
+  constructor(public dialog: MatDialog, private store: Store<AppState>, private afAuth: AngularFireAuth) { }
 
   ngOnInit() {
     this.isLoading$ = this.store.select(getIsLoading);
@@ -64,49 +59,40 @@ export class LandenComponent implements OnInit, OnDestroy {
   }
 
   onAddLand() {
-    this.modalRef = this.modalService.show(LandenModalComponent, this.modalConfig);
 
-    this.modalRef.content.heading = 'Add new land';
-    this.modalRef.content.land.id = this.lastLandIndex + 1;
-
-    this.modalRef.content.landData.pipe(take(1)).subscribe( (landData: Land) => {
-      this.store.dispatch(new fromLanden.LandenAdded({ land: landData }));
-    });
+          let dialogRef = this.dialog.open(LandenModalComponent, {
+            data: [{
+              'id': '',
+              'code': '',
+              'naam': '' 
+            }]
+        });
+        dialogRef.afterClosed().pipe(take(1)).subscribe( (landData: Land) => {
+          this.store.dispatch(new fromLanden.LandenAdded({ land: landData }));
+        });
+   
   }
 
   openEditLandModal(land: Land) {
-    this.modalRef = this.modalService.show(LandenModalComponent, this.modalConfig);
-
-    this.modalRef.content.heading = 'Edit land';
-    const landCopy = {
-      key: land.key,
-      id: land.id || null,
-      code: land.code || null,
-      naam: land.naam || null
-     };
-    this.modalRef.content.land = landCopy;
-
-    this.modalRef.content.landData.pipe(take(1)).subscribe( (landData: Land) => {
-      this.store.dispatch(new fromLanden.LandenEdited({ land: landData }));
-    });
+     this.dialog.open(LandenModalComponent, { data: land });
   }
 
-  openConfirmModal(land: Land) {
-    this.modalRef = this.modalService.show(ConfirmModalComponent, this.modalConfig);
+  // openConfirmModal(land: Land) {
+  //   this.modalRef = this.modalService.show(ConfirmModalComponent, this.modalConfig);
 
-    this.modalRef.content.confirmation.pipe(take(1)).subscribe( (confirmation: boolean) => {
-      if (confirmation) {
-        this.store.dispatch(new fromLanden.LandenDeleted({ land }));
-      }
-    });
-  }
+  //   this.modalRef.content.confirmation.pipe(take(1)).subscribe( (confirmation: boolean) => {
+  //     if (confirmation) {
+  //       this.store.dispatch(new fromLanden.LandenDeleted({ land }));
+  //     }
+  //   });
+  // }
 
   onLandEdit(land: Land) {
     this.openEditLandModal(land);
   }
 
-  onLandDelete(land: Land) {
-    this.openConfirmModal(land);
-  }
+  // onLandDelete(land: Land) {
+  //   this.openConfirmModal(land);
+  // }
 
 }

@@ -1,34 +1,32 @@
-<div class="modal-content">
-  <div class="modal-header">
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-      <span aria-hidden="true">×</span>
-    </button>
-    <h4 class="modal-title w-100" id="myModalLabel">{{ heading }}</h4>
-  </div>
-  <div class="modal-body">
-    <form #landForm="ngForm">
-      <div class="md-form">
-        <input type="text" id="id" name="id" class="form-control" [(ngModel)]="land.id" mdbInput mdbValidate [validateSuccess]="false" #id="ngModel" required>
-        <label for="id">Id</label>
-        <mdb-error *ngIf="id && id.invalid && (id.dirty || id.touched)">Id is required</mdb-error>
-      </div>
+<h1 mat-dialog-title><span *ngIf="!land.id">Add</span><span *ngIf="land.id">Edit</span> land</h1>
+<div mat-dialog-content>
+    <form #landForm="ngForm" class="user-form">      
 
-      <div class="md-form">
-        <input type="text" id="code" name="code" class="form-control" [(ngModel)]="land.code" mdbInput mdbValidate [validateSuccess]="false" #code="ngModel" required>
-        <label for="code">code</label>
-        <mdb-error *ngIf="code && code.invalid && (code.dirty || code.touched)">code is required</mdb-error>
-      </div>
+                <div fxLayout="column" class="form-field-outer">
 
-      <div class="md-form">
-        <textarea type="text" id="naam" name="naam" class="md-textarea form-control" [(ngModel)]="land.naam" mdbInput mdbValidate [validateSuccess]="false" #naam="ngModel" required></textarea>
-        <label for="naam">naam</label>
-        <mdb-error *ngIf="naam && naam.invalid && (naam.dirty || naam.touched)">naam is required</mdb-error>
-      </div>
-    </form>
-  </div>
-  <div class="modal-footer">
-    <button type="button" mdbBtn color="white" class="black-text waves-light" aria-label="Close" (click)="modalRef.hide()"
-      mdbWavesEffect>Close</button>
-    <button type="button" mdbBtn color="red" class="relative waves-light" mdbWavesEffect (click)="onSave()">Save</button>
-  </div>
+                    <mat-form-field class="w-100">
+                        <mat-placeholder><mat-icon>person</mat-icon> Id</mat-placeholder>
+                        <input matInput id="id" name="id" [(ngModel)]="land.id" #id="ngModel" required>
+                    </mat-form-field>
+
+                    <mat-form-field class="w-100">
+                        <mat-placeholder><mat-icon>person</mat-icon> Code</mat-placeholder>
+                        <input matInput id="code" name="code" [(ngModel)]="land.code" #code="ngModel" required>
+                    </mat-form-field>
+
+                  <mat-form-field class="w-100">
+                        <mat-placeholder><mat-icon>person</mat-icon> Naam</mat-placeholder>
+                        <input matInput id="naam" name="naam" [(ngModel)]="land.naam" #naam="ngModel" required>
+                    </mat-form-field>
+
+
+                </div>
+               </form>
 </div>
+<div mat-dialog-actions fxLayout="row" fxLayoutAlign="space-between center">
+    <button mat-raised-button color="primary" [mat-dialog-close]="landForm.value" [disabled]="!landForm.valid" (click)="onSave(landForm.value)"><span *ngIf="!landForm.id">Save</span><span *ngIf="landForm.id">Update</span></button>
+    <button mat-raised-button color="warn" (click)="dialogRef.close()">Cancel</button>
+</div>
+
+
+

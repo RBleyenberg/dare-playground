@@ -7,10 +7,10 @@ import { Land } from 'src/app/modules/crm/algemeen/landen/interface/interface.la
   styleUrls: ['./landen-list.component.scss']
 })
 export class LandenListComponent implements OnInit {
+
   @Input() landen: Land[];
   @Output() landDeleted = new EventEmitter<Land>();
   @Output() landEdited = new EventEmitter<Land>();
-
   displayedColumns: string[] = ['id', 'code', 'naam', 'actions'];
 
   constructor() { }

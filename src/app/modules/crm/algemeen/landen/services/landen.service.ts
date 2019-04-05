@@ -40,8 +40,8 @@ export class LandenService {
     return of(this.db.object(`landen/${userId}/` + land.key)
       .update({
         id: land.id,
-        name: land.name,
-        description: land.description,
+        code: land.code,
+        naam: land.naam,
       }));
   }
 

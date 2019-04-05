@@ -40,6 +40,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { reducers, metaReducers } from './reducers';
 import { AuthModule } from './authentication/auth.module';
 import { LandenModule } from './modules/crm/algemeen/landen/landen.module';
+import { ModalModule } from 'angular-bootstrap-md';
 
 
 @NgModule({
@@ -54,9 +55,7 @@ import { LandenModule } from './modules/crm/algemeen/landen/landen.module';
     PerfectScrollbarModule,
     CalendarModule.forRoot(),
     SharedModule,
-
-    LandenModule,
-
+    ModalModule.forRoot(),
     AuthModule,
     PipesModule,
     routing,
@@ -67,7 +66,7 @@ import { LandenModule } from './modules/crm/algemeen/landen/landen.module';
     AngularFireDatabaseModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([]),
   ],
   declarations: [
     AppComponent,

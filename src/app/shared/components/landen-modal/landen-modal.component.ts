@@ -1,10 +1,8 @@
-
-import { OnInit, ViewChild, Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MDBModalRef } from 'angular-bootstrap-md';
 import { Subject } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { Land } from 'src/app/modules/crm/algemeen/landen/interface/interface.land';
-
 
 @Component({
   selector: 'app-landen-modal',

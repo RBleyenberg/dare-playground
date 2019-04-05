@@ -16,13 +16,16 @@ import { getUser } from 'src/app/authentication/store/auth.selectors';
   encapsulation: ViewEncapsulation.None,
   providers: [ MenuService ]
 })
+
 export class SidenavComponent implements OnInit, DoCheck {
+
   public psConfig: PerfectScrollbarConfigInterface = {
     wheelPropagation: true
   };
   public menuItems: Array<any>;
   public settings: Settings;
   @Input() user: User;
+  
   constructor(public appSettings: AppSettings, public menuService: MenuService, private store: Store<AppState>) {
       this.settings = this.appSettings.settings;
   }

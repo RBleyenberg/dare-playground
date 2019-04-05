@@ -28,8 +28,8 @@ export class LandenEffects {
             return {
               key: key,
               id: land.id,
-              name: land.name,
-              description: land.description
+              code: land.code,
+              naam: land.naam
             };
           });
           return (new fromLanden.LandenLoaded({ landen: landenData }));

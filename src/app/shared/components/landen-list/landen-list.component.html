@@ -1,0 +1,24 @@
+<div class="z-depth-1">
+  <table class="table table-striped table-responsive-md btn-table" mdbTable borderless="true">
+    <thead style="background-color: transparent">
+      <tr>
+        <th>Id</th>
+        <th>Code</th>
+        <th>Naam</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let land of landen; trackBy: trackByFn">
+        <th scope="row">{{ land.id }}</th>
+        <td>{{ land.code }}</td>
+        <td>{{ land.naam }}</td>
+        <td>
+          <a (click)="onEdit(land)" class="mr-2"><mdb-icon fas icon="edit"></mdb-icon></a>
+          <a (click)="onDelete(land)"><mdb-icon fas icon="trash"></mdb-icon></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

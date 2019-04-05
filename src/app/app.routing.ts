@@ -5,13 +5,13 @@ import { PagesComponent } from './pages/pages.component';
 import { BlankComponent } from './pages/blank/blank.component';
 import { RegisterComponent } from './authentication/components/register/register.component';
 import { LoginComponent } from './authentication/components/login/login.component';
+import { AuthGuard } from './authentication/guards/auth.guard';
 
 export const routes: Routes = [
     {
         path: '',
         component: PagesComponent, children: [
-            // tslint:disable-next-line:max-line-length
-            { path: 'crm/landen', loadChildren: './modules/crm/algemeen/landen/landen.module#LandenModule', data: { breadcrumb: 'landen' } },
+            { path: 'crm/landen', loadChildren: './modules/crm/algemeen/landen/landen.module#LandenModule', data: { breadcrumb: 'landen' }, canActivate: [AuthGuard] },
             { path: 'blank', component: BlankComponent, data: { breadcrumb: 'Blank page' } },
             { path: 'register', component: RegisterComponent },
             { path: 'login', component: LoginComponent },

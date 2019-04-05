@@ -35,7 +35,11 @@ import { MatAutocompleteModule,
          MatStepperModule } from '@angular/material';
 import { ContentHeaderComponent } from './content-header/content-header.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
-import { LandenLijstComponent } from './components/landen/landen-lijst.component';
+import { InputsModule, InputUtilitiesModule, IconsModule, ButtonsModule, CardsFreeModule } from 'angular-bootstrap-md';
+import { FormsModule } from '@angular/forms';
+import { LandenListComponent } from './components/landen-list/landen-list.component';
+import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
+import { LandenModalComponent } from './components/landen-modal/landen-modal.component';
 
 @NgModule({
   imports: [
@@ -72,7 +76,14 @@ import { LandenLijstComponent } from './components/landen/landen-lijst.component
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatStepperModule
+    MatStepperModule,
+
+    InputsModule,
+    InputUtilitiesModule,
+    IconsModule,
+    FormsModule,
+    ButtonsModule,
+    CardsFreeModule
   ],
   exports: [
     FlexLayoutModule,
@@ -109,13 +120,20 @@ import { LandenLijstComponent } from './components/landen/landen-lijst.component
     MatStepperModule,
     ContentHeaderComponent,
     BreadcrumbComponent,
-
-    LandenLijstComponent
+    LandenListComponent
+    
   ],
   declarations: [
     ContentHeaderComponent,
     BreadcrumbComponent,
-    LandenLijstComponent
+    ConfirmModalComponent,
+    LandenModalComponent,
+    LandenListComponent
+    
+  ],
+  entryComponents: [
+    ConfirmModalComponent,
+    LandenModalComponent
   ]
 })
 export class SharedModule { }

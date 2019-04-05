@@ -7,7 +7,9 @@ import { take, map } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Land } from '../interface/interface.land';
 import { AppState } from 'src/app/reducers';
-import { LandenModalComponent } from '../components/landen-modal/landen-modal.component';
+import { MDBModalRef, MDBModalService } from 'angular-bootstrap-md';
+import { LandenModalComponent } from 'src/app/shared/components/landen-modal/landen-modal.component';
+import { ConfirmModalComponent } from 'src/app/shared/components/confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-landen',
@@ -15,10 +17,9 @@ import { LandenModalComponent } from '../components/landen-modal/landen-modal.co
   styleUrls: ['./landen.component.scss']
 })
 export class LandenComponent implements OnInit, OnDestroy {
-
   isLoading$: Observable<boolean>;
   landen: Land[] | null;
-
+  modalRef: MDBModalRef;
   landenSub: Subscription;
 
   modalConfig = {
@@ -27,7 +28,7 @@ export class LandenComponent implements OnInit, OnDestroy {
 
   lastLandIndex: number;
 
-  constructor(private store: Store<AppState>, private afAuth: AngularFireAuth) { }
+  constructor(private modalService: MDBModalService, private store: Store<AppState>, private afAuth: AngularFireAuth) { }
 
   ngOnInit() {
     this.isLoading$ = this.store.select(getIsLoading);
@@ -80,8 +81,8 @@ export class LandenComponent implements OnInit, OnDestroy {
     const landCopy = {
       key: land.key,
       id: land.id || null,
-      name: land.name || null,
-      description: land.description || null
+      code: land.code || null,
+      naam: land.naam || null
      };
     this.modalRef.content.land = landCopy;
 

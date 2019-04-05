@@ -14,15 +14,15 @@
       </div>
 
       <div class="md-form">
-        <input type="text" id="name" name="name" class="form-control" [(ngModel)]="land.name" mdbInput mdbValidate [validateSuccess]="false" #name="ngModel" required>
-        <label for="name">Name</label>
-        <mdb-error *ngIf="name && name.invalid && (name.dirty || name.touched)">Name is required</mdb-error>
+        <input type="text" id="code" name="code" class="form-control" [(ngModel)]="land.code" mdbInput mdbValidate [validateSuccess]="false" #code="ngModel" required>
+        <label for="code">code</label>
+        <mdb-error *ngIf="code && code.invalid && (code.dirty || code.touched)">code is required</mdb-error>
       </div>
 
       <div class="md-form">
-        <textarea type="text" id="description" name="description" class="md-textarea form-control" [(ngModel)]="land.description" mdbInput mdbValidate [validateSuccess]="false" #description="ngModel" required></textarea>
-        <label for="description">Description</label>
-        <mdb-error *ngIf="description && description.invalid && (description.dirty || description.touched)">Description is required</mdb-error>
+        <textarea type="text" id="naam" name="naam" class="md-textarea form-control" [(ngModel)]="land.naam" mdbInput mdbValidate [validateSuccess]="false" #naam="ngModel" required></textarea>
+        <label for="naam">naam</label>
+        <mdb-error *ngIf="naam && naam.invalid && (naam.dirty || naam.touched)">naam is required</mdb-error>
       </div>
     </form>
   </div>

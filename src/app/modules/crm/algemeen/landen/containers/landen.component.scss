@@ -1,0 +1,16 @@
+.landen-wrapper{
+    position:relative; 
+    min-height: 150px;
+}
+.land-toolbar{
+    background: transparent !important;
+    height: 40px;
+    margin-top: -40px;
+}
+.land-details{
+    position: relative;
+   .land-name{
+        font-weight: 400;
+        text-transform: uppercase;
+    }    
+}

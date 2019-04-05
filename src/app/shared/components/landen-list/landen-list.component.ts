@@ -11,20 +11,19 @@ export class LandenListComponent implements OnInit {
   @Output() landDeleted = new EventEmitter<Land>();
   @Output() landEdited = new EventEmitter<Land>();
 
+  displayedColumns: string[] = ['id', 'code', 'naam', 'actions'];
+
   constructor() { }
 
   ngOnInit() {
   }
 
-  onEdit(land: Land) {
-    this.landEdited.emit(land);
+  onEdit(element) {
+    console.log("onEdit", element)
+    this.landEdited.emit(element);
   }
 
-  onDelete(land: Land) {
-    this.landDeleted.emit(land);
-  }
-
-  trackByFn(index: any) {
-    return index;
+  onDelete(element) {
+    this.landDeleted.emit(element);
   }
 }
